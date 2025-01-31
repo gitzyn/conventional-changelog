@@ -3,7 +3,7 @@
 const proc = require('process')
 const exec = require('child_process').exec
 const semverValid = require('semver').valid
-const regex = /tag:\s*(.+?)[,)]/gi
+const regex = /v([0-9]+)\.([0-9]+)\.([0-9]+)\s\[skip ci\]/gi;
 const cmd = 'git log --decorate --no-color'
 const unstableTagTest = /.+-\w+\.\d+$/
 
@@ -41,7 +41,7 @@ module.exports = function gitSemverTags (opts, callback) {
     data.split('\n').forEach(function (decorations) {
       let match
       while ((match = regex.exec(decorations))) {
-        const tag = match[1]
+        const tag = `v${match[1]}.${match[2]}.${match[3]}`;
 
         if (options.skipUnstable && unstableTagTest.test(tag)) {
           // skip unstable tag

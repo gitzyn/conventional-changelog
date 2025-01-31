@@ -1,7 +1,7 @@
 'use strict'
 const dateFormat = require('dateformat')
 const getPkgRepo = require('get-pkg-repo')
-const gitSemverTags = require('git-semver-tags')
+const gitSemverTags = require('cirrus-git-semver-tags')
 const normalizePackageData = require('normalize-package-data')
 const Q = require('q')
 let gitRemoteOriginUrl
